@@ -1,0 +1,12 @@
+# Elasticsearch
+elasticsearch>=8.0.0
+
+# Machine Learning / Embeddings
+sentence-transformers>=2.2.0
+torch>=2.0.0
+
+# MCP Server
+mcp>=0.9.0
+
+# Utilities
+python-dateutil>=2.8.0
