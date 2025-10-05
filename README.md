@@ -1,7 +1,9 @@
 # 🧠 Elasticsearch Memory MCP
 
+[![PyPI](https://img.shields.io/pypi/v/elasticsearch-memory-mcp)](https://pypi.org/project/elasticsearch-memory-mcp/)
 [![MCP](https://img.shields.io/badge/MCP-Compatible-blue)](https://modelcontextprotocol.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/pypi/pyversions/elasticsearch-memory-mcp)](https://pypi.org/project/elasticsearch-memory-mcp/)
 
 A powerful **Model Context Protocol (MCP)** server that provides persistent, intelligent memory using Elasticsearch with hierarchical categorization and semantic search capabilities.
 
@@ -41,41 +43,30 @@ A powerful **Model Context Protocol (MCP)** server that provides persistent, int
 
 ## 🛠️ Installation
 
+### Quick Start (Recommended)
+
+Install directly from PyPI:
+
+```bash
+pip install elasticsearch-memory-mcp
+```
+
 ### Prerequisites
 
 - Python 3.8+
 - Elasticsearch 8.0+
-- Git
 
-### Step 1: Clone the Repository
-
-```bash
-git clone https://github.com/fredac100/elasticsearch-memory-mcp.git
-cd elasticsearch-memory-mcp
-```
-
-### Step 2: Install Dependencies
+### Step 1: Start Elasticsearch
 
 ```bash
-# Create virtual environment
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install requirements
-pip install -r requirements.txt
-```
-
-### Step 3: Start Elasticsearch
-
-```bash
-# Using Docker
+# Using Docker (recommended)
 docker run -d -p 9200:9200 -e "discovery.type=single-node" elasticsearch:8.0.0
 
 # Or install locally
 # https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html
 ```
 
-### Step 4: Configure MCP
+### Step 2: Configure MCP
 
 #### For Claude Desktop
 
@@ -85,10 +76,8 @@ Add to `~/.config/Claude/claude_desktop_config.json`:
 {
   "mcpServers": {
     "elasticsearch-memory": {
-      "command": "/path/to/elasticsearch-memory-mcp/venv/bin/python",
-      "args": [
-        "/path/to/elasticsearch-memory-mcp/mcp_server.py"
-      ],
+      "command": "uvx",
+      "args": ["elasticsearch-memory-mcp"],
       "env": {
         "ELASTICSEARCH_URL": "http://localhost:9200"
       }
@@ -97,11 +86,46 @@ Add to `~/.config/Claude/claude_desktop_config.json`:
 }
 ```
 
+> **Note**: If you don't have `uvx`, install with `pip install uvx` or use `python -m elasticsearch_memory_mcp` instead.
+
 #### For Claude Code CLI
 
 ```bash
-claude mcp add elasticsearch-memory "/path/to/venv/bin/python /path/to/mcp_server.py" \
+claude mcp add elasticsearch-memory uvx elasticsearch-memory-mcp \
   -e ELASTICSEARCH_URL=http://localhost:9200
+```
+
+### Alternative: Install from Source
+
+If you want to contribute or modify the code:
+
+```bash
+# Clone repository
+git clone https://github.com/fredac100/elasticsearch-memory-mcp.git
+cd elasticsearch-memory-mcp
+
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install in development mode
+pip install -e .
+```
+
+Then configure MCP pointing to your local installation:
+
+```json
+{
+  "mcpServers": {
+    "elasticsearch-memory": {
+      "command": "/path/to/venv/bin/python",
+      "args": ["-m", "mcp_server"],
+      "env": {
+        "ELASTICSEARCH_URL": "http://localhost:9200"
+      }
+    }
+  }
+}
 ```
 
 ## 📚 Usage
