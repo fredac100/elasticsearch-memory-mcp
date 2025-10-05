@@ -1,0 +1,90 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "elasticsearch-memory-mcp"
+version = "6.2.0"
+description = "🧠 Elasticsearch-powered MCP server with hierarchical memory categorization, intelligent auto-detection, and batch review capabilities"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Frederico Castro", email = "fredac100@users.noreply.github.com"}
+]
+maintainers = [
+    {name = "Frederico Castro", email = "fredac100@users.noreply.github.com"}
+]
+keywords = [
+    "mcp",
+    "model-context-protocol",
+    "elasticsearch",
+    "claude",
+    "memory",
+    "semantic-search",
+    "ai",
+    "llm",
+    "vector-search",
+    "embeddings"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "elasticsearch>=8.0.0",
+    "sentence-transformers>=2.2.0",
+    "torch>=2.0.0",
+    "mcp>=0.9.0",
+    "python-dateutil>=2.8.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/fredac100/elasticsearch-memory-mcp"
+Documentation = "https://github.com/fredac100/elasticsearch-memory-mcp#readme"
+Repository = "https://github.com/fredac100/elasticsearch-memory-mcp"
+"Bug Tracker" = "https://github.com/fredac100/elasticsearch-memory-mcp/issues"
+Changelog = "https://github.com/fredac100/elasticsearch-memory-mcp/blob/main/README.md#changelog"
+
+[project.scripts]
+elasticsearch-memory-mcp = "mcp_server:main"
+
+[tool.setuptools]
+packages = ["memory"]
+py-modules = ["mcp_server"]
+
+[tool.setuptools.package-data]
+memory = ["*.py"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311']
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
