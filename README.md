@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/fredac100-elasticsearch-memory-mcp-badge.png)](https://mseep.ai/app/fredac100-elasticsearch-memory-mcp)
+
 # 🧠 Elasticsearch Memory MCP
 
 [![PyPI](https://img.shields.io/pypi/v/elasticsearch-memory-mcp)](https://pypi.org/project/elasticsearch-memory-mcp/)
